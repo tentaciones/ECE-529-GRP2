@@ -40,7 +40,7 @@ export default function Home() {
 
   return (
     <main
-      className={` px-10 ${inter.className}`}
+      className={`px-5 md:px-10 ${inter.className}`}
     >
       <Navbar searchInput={searchInput} setSearchInput={setSearchInput} fetchWeatherData={fetchWeatherData} />
       <div className="mt-10">
@@ -56,7 +56,7 @@ export default function Home() {
       </div>
 
 
-      <div className="grid grid-cols-5 gap-3  mt-5">
+      <div className="grid md:grid-cols-5 grid-cols-1 gap-3  mt-5">
         {forecastData?.list.map(({ clouds, dt_txt, main, weather, visibility, wind }: any) => {
           return (
             <div key={dt_txt}>
@@ -92,9 +92,9 @@ type Props = {
 
 const City: FC<Props> = ({ title, value }) => {
   return (
-    <div className="text-gray-500 text-center">
-      <p className="text-white text-xl">{title}</p>
-      <p>{value}</p>
+    <div className="text-gray-500 text-center ">
+      <p className="text-white md:text-xl text-sm">{title}</p>
+      <p className="md:text-base text-sm">{value}</p>
     </div>
   )
 }
