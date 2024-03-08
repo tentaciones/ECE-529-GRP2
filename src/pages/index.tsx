@@ -13,7 +13,7 @@ export default function Home() {
   const fetchWeatherData = async () => {
     const city = searchInput ? searchInput : "awka"
     try {
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=6e3f0e46f813b16a98ecebb781690084`);
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.NEXT_PUBLIC_API_ID}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
