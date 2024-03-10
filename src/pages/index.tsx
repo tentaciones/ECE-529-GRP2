@@ -37,15 +37,15 @@ export default function Home() {
     }
     get()
   }, []);
-
+  console.log(forecastData?.list[0])
   return (
     <main
       className={`px-5 md:px-10 ${inter.className}`}
     >
       <Navbar searchInput={searchInput} setSearchInput={setSearchInput} fetchWeatherData={fetchWeatherData} />
-      <div className="mt-10">
+      <div className="mt-10 ">
         {forecastData && (
-          <div className="flex justify-between ">
+          <div className="flex justify-between flex-col ">
             <City title="Country" value={forecastData?.city.country} />
             <City title="City" value={forecastData?.city.name} />
             <City title="sunrise" value={convertEpochToDate(forecastData?.city.sunrise)} />
@@ -56,7 +56,7 @@ export default function Home() {
       </div>
 
 
-      <div className="grid md:grid-cols-5 grid-cols-1 gap-3  mt-5">
+      {/*<div className="grid md:grid-cols-5 grid-cols-1 gap-3  mt-5">
         {forecastData?.list.map(({ clouds, dt_txt, main, weather, visibility, wind }: any) => {
           return (
             <div key={dt_txt}>
@@ -76,7 +76,21 @@ export default function Home() {
         })}
 
 
-      </div>
+      </div>*/}
+      {forecastData?.list[0] && (<div className="flex w-full items-center justify-center mt-3" key={forecastData.list[0].dt_txt}>
+        <Item
+          time={forecastData.list[0].dt_txt}
+          temp={(Number(forecastData.list[0].main.temp) - 273.15)}
+          realFeel={(Number(forecastData.list[0].main.feels_like) - 273.15)}
+          description={forecastData.list[0].weather[0].description}
+          windSpeed={forecastData.list[0].wind.speed}
+          pressure={forecastData.list[0].main.pressure}
+          humidity={forecastData.list[0].main.humidity}
+          visibility={forecastData.list[0].visibility} />
+
+
+      </div>)}
+
 
 
     </main>
